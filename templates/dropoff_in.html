@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+    <title>MultiStop</title>
+</head>
+
+<body class="w3-light-gray" style="margin-left: 32px;margin-top: 16px">
+<form method="POST" actions="/tsp">
+
+    <div class="w3-container w3-padding-8">
+        <h3> Start Location </h3>
+
+        <div class="w3-row">
+            <input type="text" name="start">
+        </div>
+    </div>
+
+    <div class="w3-container w3-padding-8">
+        <h3> Driver End Location </h3>
+
+        <div class="w3-row">
+            <input type="text" name="driver-end">
+        </div>
+    </div>
+
+    <div class="w3-container w3-padding-8">
+        <h3> Passenger End Location </h3>
+
+        <div class="w3-row">
+            <input type="text" name="passenger-end">
+        </div>
+    </div>
+
+    <br>
+
+    <div class="w3-container w3-padding-8">
+        <input class="w3-button w3-grey" type="submit" value="submit">
+    </div>
+
+</form>
+</body>
+</html>

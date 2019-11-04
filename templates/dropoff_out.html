@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+    <title>MultiStop</title>
+</head>
+
+<body class="w3-light-gray" style="margin-top: 16px">
+<table class="w3-table w3-striped w3-white">
+    <tr>
+        <th>Dropoff Stop</th>
+        <th>Driver Time</th>
+        <th></th>
+        <th>Passenger Time</th>
+        <th></th>
+    </tr>
+    {% for option in options %}
+    <tr>
+        <td> {{ option[2] }} </td>
+        <td> {{ option[0]//60 }} min </td>
+        <td><i> +{{ option[0]//60 - options[0][0]//60 }} </i></td>
+        <td> {{ option[1]//60 }} min </td>
+        <td><i> -{{ options[0][1]//60 - option[1]//60 }} </i></td>
+    </tr>
+    {% endfor %}
+</table>
+<ul>
+</ul>
+</body>
+</html>
