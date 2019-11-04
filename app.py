@@ -1,6 +1,7 @@
 import sys
 from flask import Flask, render_template, request
 from src.dropoff import dropoff as dropoff_fn
+from src.pickup import pickup as pickup_fn
 from src.utils import filter_tradeoff
 
 app = Flask(__name__)
@@ -27,9 +28,14 @@ def dropoff():
 @app.route("/pickup", methods=["GET", "POST"])
 def pickup():
     if request.method == "POST":
-        return None
+        driver_start = request.form["driver-start"]
+        passenger_start = request.form["passenger-start"]
+        end = request.form["end"]
+        options = pickup_fn(driver_start, passenger_start, end)
+        options_filtered = filter_tradeoff(options)
+        return render_template("pickup_out.html", options=options_filtered)
 
-    return None
+    return render_template("pickup_in.html")
 
 
 if __name__ == "__main__":

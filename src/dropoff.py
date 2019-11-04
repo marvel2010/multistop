@@ -2,6 +2,8 @@ import os
 import googlemaps
 from datetime import datetime
 from src.stations import BART_STATIONS
+from src.utils import response_to_matrix
+# import src.KEY
 GOOGLE_MAPS_KEY = os.environ["GMAPS_API_KEY"]
 
 
@@ -30,9 +32,9 @@ def dropoff(start_location, driver_end_location, passenger_end_location):
         BART_STATIONS, passenger_end_location, mode="transit", departure_time=now
     )
 
-    matrix_1 = _response_to_matrix(response_1)
-    matrix_2_driver = _response_to_matrix(response_2_driver)
-    matrix_2_passenger = _response_to_matrix(response_2_passenger)
+    matrix_1 = response_to_matrix(response_1)
+    matrix_2_driver = response_to_matrix(response_2_driver)
+    matrix_2_passenger = response_to_matrix(response_2_passenger)
 
     options = [
         (
@@ -44,10 +46,3 @@ def dropoff(start_location, driver_end_location, passenger_end_location):
     ]
 
     return options
-
-
-def _response_to_matrix(response):
-    matrix = []
-    for row in response["rows"]:
-        matrix.append([element["duration"]["value"] for element in row["elements"]])
-    return matrix

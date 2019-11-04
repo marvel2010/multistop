@@ -1,6 +1,14 @@
 """Utilities!"""
 
 
+def response_to_matrix(response):
+    """Converts distance_matrix API response to a 2d matrix."""
+    matrix = []
+    for row in response["rows"]:
+        matrix.append([element["duration"]["value"] for element in row["elements"]])
+    return matrix
+
+
 def filter_tradeoff(options):
     """Filters only the relevant tradeoffs."""
     options.sort()
