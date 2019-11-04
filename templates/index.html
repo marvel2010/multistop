@@ -13,11 +13,22 @@
 </head>
 
 <body class="w3-light-gray" style="margin-left: 32px;margin-top: 16px">
-<h1>Welcome!</h1>
-<p>What do you want to do?</p>
-<list>
-    <li><a href="dropoff">Drop off a passenger.</a></li>
-    <li><a href="pickup">Pick up a passenger.</a></li>
-</list>
+<div class="w3-half">
+    <h3>MultiStop</h3>
+    <p>MultiStop can help you schedule BART pickup and dropoffs.
+        <br> MultiStop uses Google's API to account for traffic conditions.
+        <br> What do you want to do?
+    </p>
+    <table class="w3-table">
+        <tr>
+            <th class="w3-center"><a href="pickup">Pickup</a></th>
+            <th class="w3-center"><a href="dropoff">Dropoff</a></th>
+        </tr>
+        <tr>
+            <td class="w3-center"><img width="100%" src="{{ url_for('static', filename='Pickup.png') }}"></td>
+            <td class="w3-center"><img width="100%" src="{{ url_for('static', filename='Dropoff.png') }}"></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
