@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+    html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+    </style>
+    <title>MultiStop</title>
+</head>
+
+<body class="w3-light-gray" style="margin-left: 32px;margin-top: 16px">
+<div class="w3-half">
+    <div class="w3-container w3-padding-8">
+        <div class="w3-row">
+            <a href="../"><< back</a>
+        </div>
+    </div>
+
+<form method="POST">
+
+    <table>
+        <tr class="w3-row">
+            <td>{{ loc_1_name }}</td>
+            <td><input type="text" name="loc-1"></td>
+        </tr>
+        <tr class="w3-row">
+            <td>{{ loc_2_name }}</td>
+            <td><input type="text" name="loc-2"></td>
+        </tr>
+        <tr class="w3-row">
+            <td>{{ loc_3_name }}</td>
+            <td><input type="text" name="loc-3"></td>
+        </tr>
+        <tr class="w3-row">
+            <td>Timing</td>
+            <td>
+                <input type="radio" name="timing-model" value="leaving_now" checked> Leaving now <br>
+                <input type="radio" name="timing-model" value="depart_at"> Depart at <input type="datetime-local" name="depart-at-time"> <br>
+                <input type="radio" name="timing-model" value="arrive_by"> Arrive by <input type="datetime-local" name="arrive-by-time">
+            </td>
+        </tr>
+        <tr class="w3-row">
+            <td>Traffic Model (*)</td>
+            <td>
+                <input type="radio" name="traffic-model" value="best_guess" checked> Best Guess <br>
+                <input type="radio" name="traffic-model" value="optimistic"> Optimistic <br>
+                <input type="radio" name="traffic-model" value="pessimistic"> Pessimistic
+            </td>
+        </tr>
+    </table>
+
+    <div class="w3-container w3-padding-16">
+        <input class="w3-button w3-grey" type="submit" value="Calculate">
+    </div>
+
+    <div class="w3-container w3-padding-8">
+        (*) Traffic prediction only works when the timing model is "Leaving now" or "Depart at."
+        It does not work when the timing model is "Arrive by." If you don't like it, blame Google.
+    </div>
+
+</form>
+</div>
+<div class="w3-half">
+    <div class="w3-container w3-padding-8">
+        <img width="100%" src="{{ url_for('static', filename=img_path) }}">
+    </div>
+</div>
+</body>
+</html>

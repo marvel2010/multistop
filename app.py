@@ -15,27 +15,71 @@ def index():
 @app.route("/dropoff", methods=["GET", "POST"])
 def dropoff():
     if request.method == "POST":
-        start = request.form["start"]
-        driver_end = request.form["driver-end"]
-        passenger_end = request.form["passenger-end"]
-        options = dropoff_fn(start, driver_end, passenger_end)
+        start = request.form["loc-1"]
+        driver_end = request.form["loc-2"]
+        passenger_end = request.form["loc-3"]
+        traffic_model = request.form["traffic-model"]
+        timing_model = request.form["timing-model"]
+        departure_time = request.form["depart-at-time"]
+        arrival_time = request.form["arrive-by-time"]
+        options = dropoff_fn(
+            start,
+            driver_end,
+            passenger_end,
+            departure_time_request = departure_time,
+            arrival_time_request = arrival_time,
+            traffic_model_request = traffic_model,
+            timing_model_request = timing_model,
+        )
         options_filtered = filter_tradeoff(options)
-        return render_template("dropoff_out.html", options=options_filtered)
+        return render_template(
+            "output.html",
+            options=options_filtered,
+            stop_name="Dropoff Stop"
+        )
 
-    return render_template("dropoff_in.html")
+    return render_template(
+        "input.html",
+        loc_1_name="Mutual Start Location",
+        loc_2_name="Driver End Location",
+        loc_3_name="Passenger End Location",
+        img_path="Dropoff.png"
+    )
 
 
 @app.route("/pickup", methods=["GET", "POST"])
 def pickup():
     if request.method == "POST":
-        driver_start = request.form["driver-start"]
-        passenger_start = request.form["passenger-start"]
-        end = request.form["end"]
-        options = pickup_fn(driver_start, passenger_start, end)
+        driver_start = request.form["loc-1"]
+        passenger_start = request.form["loc-2"]
+        end = request.form["loc-3"]
+        traffic_model = request.form["traffic-model"]
+        timing_model = request.form["timing-model"]
+        departure_time = request.form["depart-at-time"]
+        arrival_time = request.form["arrive-by-time"]
+        options = pickup_fn(
+            driver_start,
+            passenger_start,
+            end,
+            departure_time_request=departure_time,
+            arrival_time_request=arrival_time,
+            traffic_model_request=traffic_model,
+            timing_model_request=timing_model,
+        )
         options_filtered = filter_tradeoff(options)
-        return render_template("pickup_out.html", options=options_filtered)
+        return render_template(
+            "output.html",
+            options=options_filtered,
+            stop_name="Pickup Stop"
+        )
 
-    return render_template("pickup_in.html")
+    return render_template(
+        "input.html",
+        loc_1_name="Driver Start Location",
+        loc_2_name="Passenger Start Location",
+        loc_3_name="Mutual End Location",
+        img_path="Pickup.png"
+    )
 
 
 if __name__ == "__main__":
