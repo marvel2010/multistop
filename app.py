@@ -2,7 +2,6 @@ import sys
 from flask import Flask, render_template, request
 from src.dropoff import dropoff as dropoff_fn
 from src.pickup import pickup as pickup_fn
-from src.utils import filter_tradeoff
 
 app = Flask(__name__)
 
@@ -31,10 +30,9 @@ def dropoff():
             traffic_model_request = traffic_model,
             timing_model_request = timing_model,
         )
-        options_filtered = filter_tradeoff(options)
         return render_template(
             "output.html",
-            options=options_filtered,
+            options=options,
             stop_name="Dropoff Stop"
         )
 
@@ -66,10 +64,9 @@ def pickup():
             traffic_model_request=traffic_model,
             timing_model_request=timing_model,
         )
-        options_filtered = filter_tradeoff(options)
         return render_template(
             "output.html",
-            options=options_filtered,
+            options=options,
             stop_name="Pickup Stop"
         )
 
