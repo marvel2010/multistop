@@ -52,7 +52,7 @@ def dropoff(
 
     response_1 = gmaps.distance_matrix(
         start_location,
-        BART_STATIONS,
+        [station[1] for station in BART_STATIONS],
         mode="driving",
         departure_time=departure_time,
         arrival_time=arrival_time,
@@ -60,7 +60,7 @@ def dropoff(
     )
 
     response_2_driver = gmaps.distance_matrix(
-        BART_STATIONS,
+        [station[1] for station in BART_STATIONS],
         driver_end_location,
         mode="driving",
         departure_time=departure_time,
@@ -69,7 +69,7 @@ def dropoff(
     )
 
     response_2_passenger = gmaps.distance_matrix(
-        BART_STATIONS,
+        [station[1] for station in BART_STATIONS],
         passenger_end_location,
         mode="transit",
         departure_time=departure_time,
@@ -90,10 +90,10 @@ def dropoff(
         (
             matrix_1[0][i] + matrix_2_driver[i][0],
             matrix_1[0][i] + matrix_2_passenger[i][0],
-            bart_station,
+            station[0],
             matrix_1[0][i]
         )
-        for i, bart_station in enumerate(BART_STATIONS)
+        for i, station in enumerate(BART_STATIONS)
     ]
 
     filtered_options = filter_tradeoff(options)

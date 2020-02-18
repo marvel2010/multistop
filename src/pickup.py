@@ -51,7 +51,7 @@ def pickup(
 
     response_1_driver = gmaps.distance_matrix(
         driver_start_location,
-        BART_STATIONS,
+        [station[1] for station in BART_STATIONS],
         mode="driving",
         departure_time=departure_time,
         arrival_time=arrival_time,
@@ -60,14 +60,14 @@ def pickup(
 
     response_1_passenger = gmaps.distance_matrix(
         passenger_start_location,
-        BART_STATIONS,
+        [station[1] for station in BART_STATIONS],
         mode="transit",
         departure_time=departure_time,
         arrival_time=arrival_time,
     )
 
     response_2 = gmaps.distance_matrix(
-        BART_STATIONS,
+        [station[1] for station in BART_STATIONS],
         end_location,
         mode="driving",
         departure_time=departure_time,
@@ -89,10 +89,10 @@ def pickup(
         (
             matrix_1_driver[0][i] + matrix_2[i][0],
             matrix_1_passenger[0][i] + matrix_2[i][0],
-            bart_station,
+            station[0],
             matrix_2[i][0]
         )
-        for i, bart_station in enumerate(BART_STATIONS)
+        for i, station in enumerate(BART_STATIONS)
     ]
 
     filtered_options = filter_tradeoff(options)
