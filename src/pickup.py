@@ -1,7 +1,6 @@
 import os
 import googlemaps
 from datetime import datetime
-from src.stations import BART_STATIONS
 from src.utils import response_to_matrix
 from src.utils import filter_tradeoff
 # import src.KEY
@@ -12,6 +11,7 @@ def pickup(
         driver_start_location,
         passenger_start_location,
         end_location,
+        stations,
         traffic_model_request,
         timing_model_request,
         departure_time_request,
@@ -23,6 +23,7 @@ def pickup(
         driver_start_location: string
         passenger_start_location: string
         end_location: string
+        stations: the public transit stations to consider
         traffic_model_request: "best_guess", "optimistic", or "pessimistic"
         timing_model_request: "leaving_now", "depart_at", or "arrive_by"
         departure_time_request: iso format, approximate time of departure
@@ -51,7 +52,7 @@ def pickup(
 
     response_1_driver = gmaps.distance_matrix(
         driver_start_location,
-        [station[1] for station in BART_STATIONS],
+        [station[1] for station in stations],
         mode="driving",
         departure_time=departure_time,
         arrival_time=arrival_time,
@@ -60,14 +61,14 @@ def pickup(
 
     response_1_passenger = gmaps.distance_matrix(
         passenger_start_location,
-        [station[1] for station in BART_STATIONS],
+        [station[1] for station in stations],
         mode="transit",
         departure_time=departure_time,
         arrival_time=arrival_time,
     )
 
     response_2 = gmaps.distance_matrix(
-        [station[1] for station in BART_STATIONS],
+        [station[1] for station in stations],
         end_location,
         mode="driving",
         departure_time=departure_time,
@@ -92,7 +93,7 @@ def pickup(
             station[0],
             matrix_2[i][0]
         )
-        for i, station in enumerate(BART_STATIONS)
+        for i, station in enumerate(stations)
     ]
 
     filtered_options = filter_tradeoff(options)

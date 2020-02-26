@@ -2,6 +2,7 @@ import sys
 from flask import Flask, render_template, request
 from src.dropoff import dropoff as dropoff_fn
 from src.pickup import pickup as pickup_fn
+from src.stations import BART_STATIONS
 
 app = Flask(__name__)
 
@@ -25,10 +26,11 @@ def dropoff():
             start,
             driver_end,
             passenger_end,
-            departure_time_request = departure_time,
-            arrival_time_request = arrival_time,
-            traffic_model_request = traffic_model,
-            timing_model_request = timing_model,
+            stations=BART_STATIONS,
+            departure_time_request=departure_time,
+            arrival_time_request=arrival_time,
+            traffic_model_request=traffic_model,
+            timing_model_request=timing_model,
         )
         return render_template(
             "output.html",
@@ -59,6 +61,7 @@ def pickup():
             driver_start,
             passenger_start,
             end,
+            stations=BART_STATIONS,
             departure_time_request=departure_time,
             arrival_time_request=arrival_time,
             traffic_model_request=traffic_model,
