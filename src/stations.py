@@ -1,3 +1,4 @@
+BART_TIMEZONE = 'America/Los_Angeles'
 BART_STATIONS = [
     ('12th St. Oakland City Center BART Station', '12th St. Oakland City Center Station, Oakland, CA 94607, USA'),
     ('16th St. Mission (SF) BART Station', '16th St Mission, Qa, 2000 Mission St, San Francisco, CA 94110, USA'),
@@ -48,3 +49,28 @@ BART_STATIONS = [
     ('West Dublin / Pleasanton BART Station', 'West Dublin/Pleasanton, 6501 Golden Gate Dr, Dublin, CA 94568, USA'),
     ('West Oakland BART Station', 'West Oakland Station, 1451 7th St, Oakland, CA 94607, USA')
 ]
+
+LINK_TIMEZONE = 'America/Los_Angeles'
+LINK_STATIONS = [
+    ('University of Washington Station', '3720 Montlake Blvd NE, Seattle, WA 98195'),
+    ('Capitol Hill Station', '140 Broadway E, Seattle, WA 98102'),
+    ('Westlake Station', '4th Ave, Pine St, Seattle, WA 98101'),
+    ('University Street Station', 'University Street Station, Seattle, WA'),
+    ('Pioneer Square', 'Pioneer Square Station, Seattle, WA'),
+    ('International District / Chinatown Station', 'International District/Chinatown Station, Seattle, WA'),
+    ('Stadium Station', 'Stadium Station, Seattle, WA'),
+    ('Sodo Station', 'Sodo Station, Seattle, WA'),
+    ('Beacon Hill Station', 'Beacon Hill Station, Seattle, WA'),
+    ('Mount Baker Station', 'Mount Baker Station, Seattle, WA'),
+    ('Columbia City Station', 'Columbia City Station, Seattle, WA'),
+    ('Othello Station', 'Othello Station, Seattle, WA'),
+    ('Rainier Beach Station', '9132 Martin Luther King Jr Way S, Seattle, WA 98118'),
+    ('Tukwila Intl. Blvd. Station', '3651 Southcenter Blvd, Tukwila, WA 98188'),
+    ('SeaTac / Airport Station', 'SeaTac/Airport Station, SeaTac, WA'),
+    ('Angel Lake Station', '19955 28th Ave South, SeaTac, WA 98188')
+]
+
+STATIONS_MAP = {
+    "seattle_area": LINK_STATIONS,
+    "sf_bay_area": LINK_STATIONS
+}
