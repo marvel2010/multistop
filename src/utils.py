@@ -1,11 +1,16 @@
 """Utilities!"""
+# import pprint
+import numpy as np
 
 
 def response_to_matrix(response, field):
     """Converts distance_matrix API response to a 2d matrix."""
+    # pprint.pprint("response_to_matrix")
+    # pprint.pprint(field)
+    # pprint.pprint(response)
     matrix = []
     for row in response["rows"]:
-        matrix.append([element[field]["value"] for element in row["elements"]])
+        matrix.append([element.get(field, {"value": np.Infinity})["value"] for element in row["elements"]])
     return matrix
 
 
