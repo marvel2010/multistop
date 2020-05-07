@@ -13,25 +13,49 @@
 </head>
 
 <body class="w3-light-gray" style="margin-top: 16px">
-<table class="w3-table w3-striped w3-white">
-    <tr>
-        <th>{{ stop_name }}</th>
-        <th>Driver Time</th>
-        <th></th>
-        <th>Passenger Time</th>
-        <th></th>
-    </tr>
-    {% for option in options %}
-    <tr>
-        <td> {{ option[2] }} </td>
-        <td> {{ option[0]//60 }} min </td>
-        <td><i> +{{ option[0]//60 - options[0][0]//60 }} </i></td>
-        <td> {{ option[1]//60 }} min </td>
-        <td><i> -{{ options[0][1]//60 - option[1]//60 }} </i></td>
-    </tr>
-    {% endfor %}
-</table>
-<ul>
-</ul>
+<div class="w3-container w3-padding-8">
+    <div class="w3-row">
+        <a href="../"><< back</a>
+    </div>
+</div>
+
+<div class="w3-container w3-padding-16">
+    <table>
+        <tr class="w3-row">
+            <td><b>{{ loc_1_name }}</b></td>
+            <td>{{ loc_1_value }}</td>
+        </tr>
+        <tr class="w3-row">
+            <td><b>{{ loc_2_name }}</b></td>
+            <td>{{ loc_2_value }}</td>
+        </tr>
+        <tr class="w3-row">
+            <td><b>{{ loc_3_name }}</b></td>
+            <td>{{ loc_3_value }}</td>
+        </tr>
+    </table>
+</div>
+
+<div class="w3-container w3-padding-8">
+    <table class="w3-table w3-striped w3-white">
+        <tr>
+            <th>{{ stop_name }}</th>
+            <th>Driver Time</th>
+            <th></th>
+            <th>Passenger Time</th>
+            <th></th>
+        </tr>
+        {% for option in options %}
+        <tr>
+            <td> {{ option[2] }} </td>
+            <td> {{ option[0]//60 }} min </td>
+            <td><i> +{{ option[0]//60 - options[0][0]//60 }} </i></td>
+            <td> {{ option[1]//60 }} min </td>
+            <td><i> -{{ options[0][1]//60 - option[1]//60 }} </i></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
 </body>
 </html>

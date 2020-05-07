@@ -3,6 +3,7 @@ from flask import Flask, render_template, request
 from src.dropoff import dropoff as dropoff_fn
 from src.pickup import pickup as pickup_fn
 from src.stations import STATIONS_MAP
+from src.stations import TIMEZONES_MAP
 
 app = Flask(__name__)
 
@@ -35,14 +36,20 @@ def dropoff():
         return render_template(
             "output.html",
             options=options,
+            loc_1_name="Mutual Start Location",
+            loc_1_value=start,
+            loc_2_name="Driver End Location",
+            loc_2_value=driver_end,
+            loc_3_name="Passenger End Location",
+            loc_3_value=passenger_end,
             stop_name="Dropoff Stop"
         )
 
     return render_template(
         "input.html",
-        loc_1_name="Mutual Start Location",
-        loc_2_name="Driver End Location",
-        loc_3_name="Passenger End Location",
+        loc_1_name="Mutual Start",
+        loc_2_name="Driver End",
+        loc_3_name="Passenger End",
         img_path="Dropoff.png"
     )
 
@@ -70,6 +77,12 @@ def pickup():
         return render_template(
             "output.html",
             options=options,
+            loc_1_name="Driver Start",
+            loc_1_value=driver_start,
+            loc_2_name="Passenger Start",
+            loc_2_value=passenger_start,
+            loc_3_name="Mutual End",
+            loc_3_value=end,
             stop_name="Pickup Stop"
         )
 
