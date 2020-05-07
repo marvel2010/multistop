@@ -32,6 +32,7 @@ def dropoff():
             arrival_time_request=arrival_time,
             traffic_model_request=traffic_model,
             timing_model_request=timing_model,
+            tzone=TIMEZONES_MAP[request.form["city"]]
         )
         return render_template(
             "output.html",
@@ -73,6 +74,7 @@ def pickup():
             arrival_time_request=arrival_time,
             traffic_model_request=traffic_model,
             timing_model_request=timing_model,
+            tzone=TIMEZONES_MAP[request.form["city"]]
         )
         return render_template(
             "output.html",

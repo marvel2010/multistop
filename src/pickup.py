@@ -1,5 +1,6 @@
 import os
 import googlemaps
+import pytz
 from datetime import datetime
 from src.utils import response_to_matrix
 from src.utils import filter_tradeoff
@@ -15,7 +16,8 @@ def pickup(
         traffic_model_request,
         timing_model_request,
         departure_time_request,
-        arrival_time_request
+        arrival_time_request,
+        tzone
 ):
     """Calculates the total time spent by driver and passenger.
 
@@ -28,6 +30,7 @@ def pickup(
         timing_model_request: "leaving_now", "depart_at", or "arrive_by"
         departure_time_request: iso format, approximate time of departure
         arrival_time_request: iso format, approximate time of arrival
+        tzone: timezone in which the requested times should be interpreted
 
     Returns:
         options: (driver_time, passenger_time, pickup_station, shared_leg_time)
@@ -39,13 +42,13 @@ def pickup(
 
     # set departure time or arrival time, but not both
     if timing_model_request == "leaving_now":
-        departure_time, arrival_time = datetime.now(), None
+        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.now()), None
         traffic_model = traffic_model_request
     elif timing_model_request == "depart_at":
-        departure_time, arrival_time = datetime.fromisoformat(departure_time_request), None
+        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.fromisoformat(departure_time_request)), None
         traffic_model = traffic_model_request
     elif timing_model_request == "arrive_by":
-        departure_time, arrival_time = None, datetime.fromisoformat(arrival_time_request)
+        departure_time, arrival_time = None, pytz.timezone(tzone).localize(datetime.fromisoformat(arrival_time_request))
         traffic_model = None
     else:
         raise ValueError("Unrecognized timing model.")
