@@ -1,8 +1,7 @@
 import os
 import googlemaps
 import pytz
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timezone
 from src.utils import response_to_matrix
 from src.utils import filter_tradeoff
 # import src.KEY
@@ -43,13 +42,13 @@ def dropoff(
 
     # set departure time or arrival time, but not both
     if timing_model_request == "leaving_now":
-        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.now()), None
+        departure_time, arrival_time = datetime.now(timezone.utc).timestamp(), None
         traffic_model = traffic_model_request
     elif timing_model_request == "depart_at":
-        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.fromisoformat(departure_time_request)), None
+        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.fromisoformat(departure_time_request)).timestamp(), None
         traffic_model = traffic_model_request
     elif timing_model_request == "arrive_by":
-        departure_time, arrival_time = None, pytz.timezone(tzone).localize(datetime.fromisoformat(arrival_time_request))
+        departure_time, arrival_time = None, pytz.timezone(tzone).localize(datetime.fromisoformat(arrival_time_request)).timestamp()
         traffic_model = None
     else:
         raise ValueError("Unrecognized timing model.")
@@ -105,7 +104,7 @@ def dropoff(
     if departure_time is not None:
         for i, filtered_option in enumerate(filtered_options):
             passenger_transit_time_with_wait = _transit_time_with_wait(
-                start_time=departure_time + timedelta(seconds=filtered_option[3]),
+                start_time=departure_time + filtered_option[3],
                 start_location=filtered_option[2],
                 end_location=passenger_end_location,
             )
@@ -127,9 +126,9 @@ def _transit_time_with_wait(
     """Calculates the total time spent by a transit passenger, including wait time.
 
     Args:
-        start_time: datetime object
-        start_location: string
-        end_location: string
+        start_time: [int] start timestamp
+        start_location: [string]
+        end_location: [string]
 
     Returns:
         passenger_time
@@ -143,8 +142,8 @@ def _transit_time_with_wait(
     )
 
     if "arrival_time" in response[0]["legs"][0].keys():
-        end_time = datetime.fromtimestamp(response[0]["legs"][0]["arrival_time"]["value"])
-        time_with_wait = (end_time - start_time) // timedelta(seconds=1)
-        return time_with_wait
+        end_time = response[0]["legs"][0]["arrival_time"]["value"]
+        time_with_wait = end_time - start_time
+        return int(time_with_wait)
     else:
-        return response[0]["legs"][0]["duration"]["value"]
+        return int(response[0]["legs"][0]["duration"]["value"])

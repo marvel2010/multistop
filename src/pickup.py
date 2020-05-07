@@ -1,7 +1,7 @@
 import os
 import googlemaps
 import pytz
-from datetime import datetime
+from datetime import datetime, timezone
 from src.utils import response_to_matrix
 from src.utils import filter_tradeoff
 # import src.KEY
@@ -42,13 +42,13 @@ def pickup(
 
     # set departure time or arrival time, but not both
     if timing_model_request == "leaving_now":
-        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.now()), None
+        departure_time, arrival_time = datetime.now(timezone.utc).timestamp(), None
         traffic_model = traffic_model_request
     elif timing_model_request == "depart_at":
-        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.fromisoformat(departure_time_request)), None
+        departure_time, arrival_time = pytz.timezone(tzone).localize(datetime.fromisoformat(departure_time_request)).timestamp(), None
         traffic_model = traffic_model_request
     elif timing_model_request == "arrive_by":
-        departure_time, arrival_time = None, pytz.timezone(tzone).localize(datetime.fromisoformat(arrival_time_request))
+        departure_time, arrival_time = None, pytz.timezone(tzone).localize(datetime.fromisoformat(arrival_time_request)).timestamp()
         traffic_model = None
     else:
         raise ValueError("Unrecognized timing model.")
