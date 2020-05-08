@@ -6,6 +6,7 @@ from src.pickup import pickup as pickup_fn
 from src.stations import STATIONS_MAP
 from src.stations import TIMEZONES_MAP
 
+logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 
 
@@ -109,7 +110,6 @@ def pickup():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     if len(sys.argv) > 1 and sys.argv[1] == "test":
         app.run(debug=True)
     else:
