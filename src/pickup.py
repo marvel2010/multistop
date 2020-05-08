@@ -1,6 +1,7 @@
 import os
 import googlemaps
 import pytz
+import logging
 from datetime import datetime, timezone
 from src.utils import response_to_matrix
 from src.utils import filter_tradeoff
@@ -100,5 +101,7 @@ def pickup(
     ]
 
     filtered_options = filter_tradeoff(options)
+
+    logging.debug("filtered_options:%s" % filtered_options)
 
     return filtered_options

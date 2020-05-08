@@ -1,6 +1,8 @@
 import os
 import googlemaps
 import pytz
+import logging
+import numpy as np
 from datetime import datetime, timezone
 from src.utils import response_to_matrix
 from src.utils import filter_tradeoff
@@ -101,6 +103,8 @@ def dropoff(
 
     filtered_options = filter_tradeoff(options)
 
+    logging.debug("filtered_options:%s" % filtered_options)
+
     if departure_time is not None:
         for i, filtered_option in enumerate(filtered_options):
             passenger_transit_time_with_wait = _transit_time_with_wait(
@@ -141,7 +145,11 @@ def _transit_time_with_wait(
         departure_time=start_time
     )
 
-    if "arrival_time" in response[0]["legs"][0].keys():
+    logging.debug("_transit_time_with_wait:response:%s" % response)
+
+    if not response:
+        return np.Infinity
+    elif "arrival_time" in response[0]["legs"][0].keys():
         end_time = response[0]["legs"][0]["arrival_time"]["value"]
         time_with_wait = end_time - start_time
         return int(time_with_wait)
