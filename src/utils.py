@@ -5,7 +5,7 @@ import logging
 
 def response_to_matrix(response, field):
     """Converts distance_matrix API response to a 2d matrix."""
-    logging.debug("response_to_matrix : %s : %s" % (field, response))
+    logging.debug("response_to_matrix:%s:%s" % (field, response))
     matrix = []
     for row in response["rows"]:
         matrix.append([element.get(field, {"value": np.Infinity})["value"] for element in row["elements"]])
