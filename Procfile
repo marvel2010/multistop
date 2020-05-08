@@ -1,1 +1,1 @@
-web: gunicorn app:app --log-level=info
+web: gunicorn app:app
