@@ -47,7 +47,7 @@
         </tr>
         {% for option in options %}
         <tr>
-            <td> {{ option[2] }} </td>
+            <td> {{ option[2][0] }} </td>
             <td> {{ option[0]//60 }} min </td>
             <td><i> +{{ option[0]//60 - options[0][0]//60 }} </i></td>
             <td> {{ option[1]//60 }} min </td>
