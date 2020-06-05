@@ -95,7 +95,7 @@ def dropoff(
         (
             matrix_1[0][i] + matrix_2_driver[i][0],
             matrix_1[0][i] + matrix_2_passenger[i][0],
-            station[0],
+            station,
             matrix_1[0][i]
         )
         for i, station in enumerate(stations)
@@ -109,7 +109,7 @@ def dropoff(
         for i, filtered_option in enumerate(filtered_options):
             passenger_transit_time_with_wait = _transit_time_with_wait(
                 start_time=departure_time + filtered_option[3],
-                start_location=filtered_option[2],
+                start_location=filtered_option[2][1],
                 end_location=passenger_end_location,
             )
             filtered_options[i] = (
@@ -118,6 +118,8 @@ def dropoff(
                 filtered_option[2],
                 filtered_option[3]
             )
+
+    filtered_options = filter_tradeoff(filtered_options)
 
     return filtered_options
 
@@ -138,6 +140,9 @@ def _transit_time_with_wait(
         passenger_time
     """
     gmaps = googlemaps.Client(key=GOOGLE_MAPS_KEY)
+
+    logging.debug("_transit_time_with_wait:input:%s:%s:%s" % (start_location, end_location, start_time))
+
     response = gmaps.directions(
         start_location,
         end_location,

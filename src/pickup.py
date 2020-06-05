@@ -94,7 +94,7 @@ def pickup(
         (
             matrix_1_driver[0][i] + matrix_2[i][0],
             matrix_1_passenger[0][i] + matrix_2[i][0],
-            station[0],
+            station,
             matrix_2[i][0]
         )
         for i, station in enumerate(stations)
