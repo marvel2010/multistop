@@ -193,5 +193,128 @@ LINK_STATIONS = [
     ("Angel Lake Station", "19955 28th Ave South, SeaTac, WA 98188"),
 ]
 
-TIMEZONES_MAP = {"seattle_area": LINK_TIMEZONE, "sf_bay_area": BART_TIMEZONE}
-STATIONS_MAP = {"seattle_area": LINK_STATIONS, "sf_bay_area": BART_STATIONS}
+MBTA_TIMEZONE = "America/New_York"
+MBTA_STATIONS = [
+    # Red
+    ("Alewife Station (Red)", "Alewife Station, Cambridge, MA 02140"),
+    ("Davis Station (Red)", "Davis Station, Somerville, MA 02144"),
+    ("Porter Station (Red)", "1899 Massachusetts Ave, Cambridge, MA 02140"),
+    ("Harvard Station (Red)", "1400 Massachusetts Ave, Cambridge, MA 02138"),
+    ("Central Station (Red)", "Central Station, Cambridge, MA 02139"),
+    ("Kendall/MIT Station (Red)", "Kendall/MIT Station, Cambridge, MA 02142"),
+    ("Charles/MGH Station (Red)", "426 Longfellow Bridge, Boston, MA 02114"),
+    ("Park Street Station (Red/Green)", "Park Street Station, Boston, MA 02108"),
+    ("Downtown Crossing Station (Red/Orange)", "Washington St & Summer St, Boston, MA 02108"),
+    ("South Station (Red)", "700 Atlantic Ave, Boston, MA 02110"),
+    ("Broadway Station (Red)", "Broadway Station, Boston, MA 02127"),
+    ("Andrew Station (Red)", "Andrew Station, Boston, MA 02127"),
+    ("JFK/UMass Station (Red)", "599 Old Colony Ave, Boston, MA 02127"),
+    # Orange
+    ("Oak Grove Station (Orange)", "Oak Grove Station, Malden, MA 02148"),
+    ("Malden Center Station (Orange)", "Malden Center Station, Malden, MA 02148"),
+    ("Wellington Station (Orange)", "Wellington Station, Revere Beach Pkwy, Medford, MA 02155"),
+    ("Assembly Station (Orange)", "499 Foley St, Somerville, MA 02145"),
+    (
+        "Sullivan Square Station (Orange)",
+        "Sullivan Square Station, Haverhill St, Boston, MA 02129, USA",
+    ),
+    ("Community College Station (Orange)", "Community College Station, Boston, MA 02129"),
+    ("North Station (Orange/Green)", "North Station, Boston, MA 02114"),
+    ("Haymarket Station (Orange/Green)", "Congress Street & New Sudbury Street, Boston, MA 02108"),
+    ("State Station (Orange/Blue)", "200 Washington St, Boston, MA 02109"),
+    ("Chinatown Station (Orange)", "Chinatown Station, Boston, MA 02111"),
+    ("Tufts Medical Center Station (Orange)", "Tufts Medical Center Station, Boston, MA 02116"),
+    ("Back Bay Station (Orange)", "145 Dartmouth St, Boston, MA 02116"),
+    ("Massachusetts Avenue Station (Orange)", "393 Massachusetts Ave, Boston, MA 02118"),
+    ("Ruggles Station (Orange)", "1150 Tremont St, Roxbury, MA 02120"),
+    ("Roxbury Crossing Station (Orange)", "1400 Tremont St, Boston, MA 02120"),
+    ("Jackson Square Station (Orange)", "Jackson Square Station, Boston, MA 02130"),
+    ("Stony Brook Station (Orange)", "100 Boylston St, Boston, MA 02130"),
+    ("Green Street Station (Orange)", "150 Green St, Boston, MA 02130"),
+    ("Forest Hills Station (Orange)", "Forest Hills Station, Boston, MA 02130"),
+    # Green
+    ("Government Center Station (Green/Blue)", "Government Center Station, Boston, MA 02203"),
+    ("Boylston Station (Green)", "Boylston Station, Boston, MA 02108"),
+    ("Arlington Station (Green)", "Arlington Station, Boston, MA 02116"),
+    ("Copley Station (Green)", "Copley Station, Boston, MA 02116"),
+    (
+        "Hynes Convention Center Station (Green)",
+        "Hynes Convention Center Station, Boston, MA 02115",
+    ),
+    ("Kenmore Station (Green)", "Kenmore Station, Boston, MA 02215"),
+    # E
+    ("Prudential Station (Green)", "Huntington Ave &, Belvidere St, Boston, MA 02199"),
+    ("Symphony Station (Green)", "Symphony Station, Boston, MA 02115"),
+    ("Northeast University Station (Green)", "Huntington Ave & Opera Pl, Boston, MA 02115"),
+    ("Museum of Fine Arts Station (Green)", "Museum of Fine Arts Station, Boston, MA 02115"),
+    (
+        "Longwood Medical Area Station (Green)",
+        "Longwood Medical Area Station, Boston, MA 02115",
+    ),
+    ("Brigham Circle Station (Green)", "Brigham Circle Station, Boston, MA 02120"),
+    ("Heath Street Station (Green)", "Heath Street Station, Boston, MA 02130"),
+    # D
+    ("Fenway Station (Green)", "Fenway Station, Park Dr, Boston, MA 02215"),
+    ("Longwood Station (Green)", "Longwood Station, Brookline, MA 02446"),
+    ("Brookline Village Station (Green)", "Brookline Village Station, Brookline, MA 02445"),
+    ("Reservoir Station (Green)", "Reservoir Station, Brookline, MA 02445"),
+    ("Chesnut Hill Station (Green)", "Chesnut Hill Station, Newton, MA 02467"),
+    ("Newton Centre Station (Green)", "Newton Centre Station, Newton, MA 02459"),
+    ("Newton Highlands Station (Green)", "Newton Highlands Station, Newton, MA 02461"),
+    ("Waban Station (Green)", "Waban Station, Newton, MA 02468"),
+    ("Woodland Station (Green)", "1940 Washington St, Newton, MA 02466"),
+    ("Riverside Station (Green)", "367 Grove St, Newton, MA 02466"),
+    # C
+    ("Saint Marys Street Station (Green)", "Saint Marys Street Station, Boston, MA 02215"),
+    ("Kent Street Station (Green)", "Kent Street Station, Brookline, MA 02446"),
+    ("Coolidge Corner Station (Green)", "Beacon St & Harvard St, Brookline, MA 02446"),
+    ("Summit Avenue Station (Green)", "Beacon St & Summit Ave, Brookline, MA 02446"),
+    ("Brandon Hall Station (Green)", "Brandon Hall Station, Brookline, MA 02446"),
+    ("Washington Square Station (Green)", "Washington Square Station, Brookline, MA 02446"),
+    ("Tappan Street Station (Green)", "Tappan Street Station, Brookline, MA 02446"),
+    ("Cleveland Circle Station (Green)", "Cleaveland Circle Station, Boston, MA 02135"),
+    # B
+    (
+        "Boston University Central Station (Green)",
+        "Commonwealth Ave & Marsh Chapel, Boston, MA",
+    ),
+    (
+        "Boston University West Station (Green)",
+        "Boston University West Station, Boston, MA 02215",
+    ),
+    ("Saint Paul Street Station (Green)", "Saint Paul Street Station, Boston, MA 02215"),
+    ("Pleasant Street Station (Green)", "Commonwealth Ave & Pleasant St, Boston, MA 02215"),
+    ("Babcock Street Station (Green)", "Commonwealth Ave & Babcock St, Boston, MA 02215"),
+    ("Packards Corner Station (Green)", "Commonwealth Ave & Brighton Ave, Boston, MA 02215"),
+    ("Harvard Avenue Station (Green)", "Harvard Avenue Station, Boston, MA 02134"),
+    ("Allston Street Station (Green)", "Allston St & Commonwealth Avenue, Boston, MA 02134"),
+    ("Warren Street Station (Green)", "Warren Street Station, Boston, MA 02135"),
+    ("Washington Street Station (Green)", "Commonwealth Ave & Washington St, Boston, MA 02135"),
+    ("Sutherland Road Station (Green)", "Commonwealth Ave & Sutherland Rd, Boston, MA 02135"),
+    ("Boston College Station (Green)", "Boston College Station, Newton, MA 02467"),
+    # Blue
+    ("Wonderland Station (Blue)", "Wonderland Station, Revere, MA 02151"),
+    ("Revere Beach Station (Blue)", "220 Shirley Ave, Revere, MA 02151"),
+    ("Beachmont Station (Blue)", "Beachmont Station, Revere, MA 02151"),
+    ("Suffolk Downs Station (Blue)", "Suffolk Downs Station, Boston, MA 02128, USA"),
+    ("Orient Heights Station (Blue)", "Orient Heights Station, Boston, MA 02128"),
+    ("Wood Island Station (Blue)", "Wood Island Station, Boston, MA 02128"),
+    ("Airport Station (Blue)", "Airport Station, Boston, MA 02128"),
+    ("Maverick Station (Blue)", "Maverick Station, Boston, MA 02128"),
+    ("Aquarium Station (Blue)", "Aquarium Station, Boston, MA 02109"),
+    ("Bowdoin Station (Blue)", "Bowdoin Station, Boston, MA 02114"),
+    # Silver
+    ("Logan International Airport (Silver)", "Logan International Airport, Boston, MA 02128")
+]
+
+
+TIMEZONES_MAP = {
+    "seattle_area": LINK_TIMEZONE,
+    "sf_bay_area": BART_TIMEZONE,
+    "boston_area": MBTA_TIMEZONE,
+}
+STATIONS_MAP = {
+    "seattle_area": LINK_STATIONS,
+    "sf_bay_area": BART_STATIONS,
+    "boston_area": MBTA_STATIONS,
+}
