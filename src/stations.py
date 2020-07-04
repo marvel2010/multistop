@@ -427,3 +427,9 @@ STATIONS_MAP = {
     "sf_bay_area": BART_AND_CALTRAIN_STATIONS,
     "boston_area": MBTA_STATIONS,
 }
+
+SYSTEM_NAMES_MAP = {
+    "seattle_area": "LINK (Seattle)",
+    "sf_bay_area": "BART/Caltrain (Bay Area)",
+    "boston_area": "MBTA (Boston)",
+}

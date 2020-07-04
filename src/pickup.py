@@ -41,6 +41,11 @@ def pickup(
     assert traffic_model_request in ["best_guess", "optimistic", "pessimistic"], "invalid traffic model"
     assert timing_model_request in ["leaving_now", "depart_at", "arrive_by"], "invalid timing model"
 
+    # add the driver start, passenger start, and mutual end
+    stations.append(("Driver Start Location", driver_start_location))
+    stations.append(("Passenger Start Location", passenger_start_location))
+    stations.append(("Mutual End Location", end_location))
+
     # set departure time or arrival time, but not both
     if timing_model_request == "leaving_now":
         departure_time, arrival_time = datetime.now(timezone.utc).timestamp(), None

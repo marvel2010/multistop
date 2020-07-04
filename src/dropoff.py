@@ -42,6 +42,11 @@ def dropoff(
     assert traffic_model_request in ["best_guess", "optimistic", "pessimistic"], "invalid traffic model"
     assert timing_model_request in ["leaving_now", "depart_at", "arrive_by"], "invalid timing model"
 
+    # add the mutual start, driver end, and passenger end
+    stations.append(("Mutual Start Location", start_location))
+    stations.append(("Driver End Location", driver_end_location))
+    stations.append(("Passenger End Location", passenger_end_location))
+
     # set departure time or arrival time, but not both
     if timing_model_request == "leaving_now":
         departure_time, arrival_time = datetime.now(timezone.utc).timestamp(), None
